@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class FinishPoint : MonoBehaviour
 {
+    [SerializeField] bool goNextLevel;
+    [SerializeField] string levelName;
     //public string Level;
     //public void LoadLevel()
     //{
@@ -23,7 +25,14 @@ public class FinishPoint : MonoBehaviour
     {
         if (collision.CompareTag("Vehicle"))
         {
-            SceneController.instance.NextLevel();
+            if (goNextLevel)
+            {
+                SceneController.instance.NextLevel();
+            }
+            else { 
+                SceneController.instance.LoadScene(levelName);
+            }
+
         }
     }
 }
