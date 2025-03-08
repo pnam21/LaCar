@@ -5,8 +5,8 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public TMP_Text scoreText; // Kéo UI Text vào đây
-    private int score = 0;
+    public TMP_Text coinText; // Kéo UI Text vào đây
+    private int coin = 0;
     [SerializeField] private int price = 10;
     [SerializeField] private GameObject gameovercanvas;
     private void Awake()
@@ -23,10 +23,10 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1.0f;
 
     }
-    public void AddScore(int amount)
+    public void AddCoin(int amount)
     {
-        score += amount;
-        scoreText.text = "Score: " + score;
+        coin += amount;
+        coinText.text = "Coin: " + coin;
     }
     public void GameOver()
     {
