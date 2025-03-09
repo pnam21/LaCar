@@ -7,7 +7,7 @@ public class Drive : MonoBehaviour
     [SerializeField] private Rigidbody2D frontTireRB;
     [SerializeField] private Rigidbody2D backTireRB;
     [SerializeField] private Rigidbody2D carRB;
-    [SerializeField] private float speed = 90f;
+    [SerializeField] private float speed = 75f;
     [SerializeField] private float rotationSpeed = 300f;
 
     private float moveInput;
@@ -20,7 +20,7 @@ public class Drive : MonoBehaviour
 
     private void FixedUpdate()
     {
-        frontTireRB.AddTorque(- moveInput * speed * Time.deltaTime);
+        frontTireRB.AddTorque(-moveInput * speed * Time.deltaTime);
         backTireRB.AddTorque(-moveInput * speed * Time.deltaTime);
         carRB.AddTorque(moveInput * rotationSpeed * Time.fixedDeltaTime);
     }
