@@ -1,26 +1,32 @@
 using UnityEngine;
-using TMPro; // Thêm th? vi?n TextMeshPro
+using TMPro; 
 
 public class Enemy : MonoBehaviour
 {
-    public static int totalScore = 0; // Bi?n t?nh l?u t?ng ?i?m
-    public int scoreValue = 10; // ?i?m c?ng khi tiêu di?t enemy
-    public TextMeshProUGUI scoreText; // UI hi?n th? ?i?m
+    AudioManager audioManager;
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+    public static int totalScore = 0; 
+    public int scoreValue = 10; 
+    public TextMeshProUGUI scoreText; 
 
     private void Start()
     {
-        // Tìm ??i t??ng ScoreText trong scene
+       
         scoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
         UpdateScoreUI();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Vehicle")) // N?u xe ch?m vào enemy
+        if (other.CompareTag("Vehicle")) 
         {
-            totalScore += scoreValue; // C?ng ?i?m
-            UpdateScoreUI(); // C?p nh?t UI
-            Destroy(gameObject); // Xóa enemy
+            audioManager.PlaySFX(audioManager.squash);
+            totalScore += scoreValue;
+            UpdateScoreUI(); 
+            Destroy(gameObject); 
         }
     }
 

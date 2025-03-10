@@ -6,6 +6,8 @@ using UnityEngine;
 using UnityEngine.UI;
 public class FuelController : MonoBehaviour
 {
+    AudioManager audioManager;
+    
     public static FuelController instance;
     [SerializeField] private Image fuelImage;
     [SerializeField, Range(0.1f,5f)] private float fuelDrainSpeed = 1f;
@@ -14,7 +16,8 @@ public class FuelController : MonoBehaviour
     private float currentFuelAmmount;
     private void Awake()
     {
-        if(instance == null)
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        if (instance == null)
         {
             instance = this;
         }
@@ -29,6 +32,7 @@ public class FuelController : MonoBehaviour
         currentFuelAmmount -= Time.deltaTime * fuelDrainSpeed;
         UpdateUI();
         if (currentFuelAmmount <= 0f) {
+            audioManager.PlaySFX(audioManager.gameover);
             GameManager.instance.GameOver();
         }
     }
