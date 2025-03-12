@@ -16,6 +16,7 @@ public class FinishPoint : MonoBehaviour
     {
         if (collision.CompareTag("Vehicle"))
         {
+            FuelController.instance.FillFuel();
             audioManager.PlaySFX(audioManager.finish);
             if (goNextLevel)
             {

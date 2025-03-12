@@ -127,6 +127,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1254136596}
     m_Modifications:
+    - target: {fileID: 1362407736960098967, guid: f7074c862fe8edd408b2bfc121c75801, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2663980715284926424, guid: f7074c862fe8edd408b2bfc121c75801, type: 3}
+      propertyPath: carRb
+      value: 
+      objectReference: {fileID: 1727747355}
+    - target: {fileID: 2991144351054270566, guid: f7074c862fe8edd408b2bfc121c75801, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3767432132721048777, guid: f7074c862fe8edd408b2bfc121c75801, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.14
@@ -3540,7 +3552,7 @@ Canvas:
   m_GameObject: {fileID: 978165579}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -4538,7 +4550,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1193435618}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: RestartGame
         m_Mode: 1
@@ -4588,6 +4600,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1700371545}
   m_CullTransparentMesh: 1
+--- !u!50 &1727747355 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 9159168250565251944, guid: b317ebf7657a6cc4086ca1b701ccb269, type: 3}
+  m_PrefabInstance: {fileID: 1810691768470212718}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1928711568
 PrefabInstance:
   m_ObjectHideFlags: 0
