@@ -280,6 +280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95b48e7be6258fe4a85045fdc08d06fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelName: scene2
   gameovercanvas: {fileID: 658648110}
 --- !u!4 &133966114
 Transform:
