@@ -7,7 +7,6 @@ using UnityEngine.U2D;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    [SerializeField] string levelName;
     [SerializeField] private GameObject gameovercanvas;
 
     private void Awake()
@@ -29,7 +28,8 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         FuelController.instance.FillFuel();
-        SceneController.instance.LoadScene(levelName);
+        Debug.Log("index = " +
+           SceneManager.GetActiveScene().buildIndex );
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
