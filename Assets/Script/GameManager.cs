@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         gameovercanvas.SetActive(true);
+        DontDestroyOnLoad(gameovercanvas);
         Time.timeScale = 0f;
     }
 
@@ -31,5 +32,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("index = " +
            SceneManager.GetActiveScene().buildIndex );
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        DontDestroyOnLoad(gameObject);
     }
+    
 }
