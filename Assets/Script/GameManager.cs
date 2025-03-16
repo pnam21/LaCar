@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     [SerializeField] private GameObject gameovercanvas;
+    [SerializeField] private GameObject PauseMenu;
 
     private void Awake()
     {
@@ -24,7 +25,9 @@ public class GameManager : MonoBehaviour
 
     }
 
-    
+
+
+
 
     private void OnEnable()
     {
@@ -40,8 +43,14 @@ public class GameManager : MonoBehaviour
     {
         if (gameovercanvas != null)
         {
-            gameovercanvas.tag = "Untagged"; 
-            gameovercanvas.SetActive(false); 
+            gameovercanvas.tag = "Untagged";
+            gameovercanvas.SetActive(false);
+        }
+        if (PauseMenu != null)
+        {
+            PauseMenu.tag = "Untagged";
+            PauseMenu.SetActive(false);
+
         }
     }
 
@@ -62,7 +71,13 @@ public class GameManager : MonoBehaviour
 
         if (gameovercanvas != null)
         {
-            gameovercanvas.SetActive(false); 
+
+            gameovercanvas.SetActive(false);
+        }
+        if (PauseMenu != null)
+        {
+            PauseMenu.SetActive(false);
+
         }
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

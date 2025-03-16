@@ -6,7 +6,6 @@ using UnityEngine;
 using UnityEngine.UI;
 public class FuelController : MonoBehaviour
 {
-    AudioManager audioManager;
     
     public static FuelController instance;
     [SerializeField] private Image fuelImage;
