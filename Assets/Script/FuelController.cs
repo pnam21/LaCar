@@ -16,6 +16,7 @@ public class FuelController : MonoBehaviour
     private float currentFuelAmmount;
     private void Awake()
     {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         if (instance == null)
         {
             instance = this;
@@ -31,6 +32,7 @@ public class FuelController : MonoBehaviour
         currentFuelAmmount -= Time.deltaTime * fuelDrainSpeed;
         UpdateUI();
         if (currentFuelAmmount <= 0f) {
+            audioManager.PlaySFX(audioManager.gameover);
             GameManager.instance.GameOver();
         }
     }
