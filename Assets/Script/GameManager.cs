@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
 
 
 
+
+
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -48,6 +50,7 @@ public class GameManager : MonoBehaviour
         {
             PauseMenu.tag = "Untagged";
             PauseMenu.SetActive(false);
+
         }
     }
 
@@ -68,11 +71,13 @@ public class GameManager : MonoBehaviour
 
         if (gameovercanvas != null)
         {
+
             gameovercanvas.SetActive(false);
         }
         if (PauseMenu != null)
         {
             PauseMenu.SetActive(false);
+
         }
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
