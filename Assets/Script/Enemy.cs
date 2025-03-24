@@ -1,5 +1,5 @@
 using UnityEngine;
-using TMPro; 
+using TMPro;
 
 public class Enemy : MonoBehaviour
 {
@@ -8,33 +8,33 @@ public class Enemy : MonoBehaviour
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
-    public static int totalScore = 0; 
-    public int scoreValue = 10; 
-    public TextMeshProUGUI scoreText; 
-
-    private void Start()
-    {
-       
-        scoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
-        UpdateScoreUI();
-    }
+    public static int totalScore = 0;
+    public int scoreValue = 10;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Vehicle")) 
+        if (other.CompareTag("Vehicle"))
         {
             audioManager.PlaySFX(audioManager.squash);
             totalScore += scoreValue;
-            UpdateScoreUI(); 
-            Destroy(gameObject); 
+
+            // Cập nhật điểm thông qua GameManager
+            if (GameManager.instance != null)
+            {
+                GameManager.instance.UpdateScoreUI();
+            }
+
+            Destroy(gameObject);
         }
     }
 
-    private void UpdateScoreUI()
+    public static void ResetScore()
     {
-        if (scoreText != null)
+        totalScore = 0;
+        // Cập nhật UI thông qua GameManager
+        if (GameManager.instance != null)
         {
-            scoreText.text = "Score: " + totalScore;
+            GameManager.instance.UpdateScoreUI();
         }
     }
 }
