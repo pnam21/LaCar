@@ -3,27 +3,27 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public GameObject settingsPanel; // Panel cài ??t
+    public GameObject settingsPanel; 
 
     public void PlayGame()
     {
-        SceneManager.LoadScene("scene1"); // Chuy?n sang màn ch?i
+        SceneManager.LoadScene("scene1"); 
     }
     public void OpenSettings()
     {
-        settingsPanel.SetActive(true); // Hi?n c?a s? cài ??t
+        settingsPanel.SetActive(true); 
     }
     public void SaveSettings()
     {
-        settingsPanel.SetActive(false); // ?óng c?a s? cài ??t
+        settingsPanel.SetActive(false); 
     }
     public void CloseSettings()
     {
-        settingsPanel.SetActive(false); // ?óng c?a s? cài ??t
+        settingsPanel.SetActive(false); 
     }
 
     public void QuitGame()
     {
-        Application.Quit(); // Thoát game
+        Application.Quit(); 
     }
 }
