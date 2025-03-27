@@ -17,9 +17,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI finalScoreText;
     [SerializeField] private Button playAgainButton;
 
+    [Header("Game Win UI")]
+    [SerializeField] private TextMeshProUGUI gameWinText;
+    [SerializeField] private TextMeshProUGUI winScoreText;
+    [SerializeField] private Button HomeButton;
+
     [Header("Game UI")]
     [SerializeField] private Canvas gameCanvas; // Canvas chứa UI trong game
     [SerializeField] private TextMeshProUGUI scoreText; // Reference trực tiếp đến ScoreText
+
+
 
     private void Awake()
     {
@@ -36,6 +43,7 @@ public class GameManager : MonoBehaviour
 
         // Ẩn UI Game Over khi bắt đầu
         HideGameOverUI();
+        HideGameWinUI();
     }
 
     private void Start()
@@ -43,6 +51,8 @@ public class GameManager : MonoBehaviour
         // Thêm sự kiện cho các nút
         if (playAgainButton != null)
             playAgainButton.onClick.AddListener(RestartGame);
+        if (HomeButton != null)
+            HomeButton.onClick.AddListener(GoHome);
 
         // Đảm bảo UI Score được hiển thị
         if (scoreText != null)
@@ -132,6 +142,38 @@ public class GameManager : MonoBehaviour
         if (playAgainButton != null)
             playAgainButton.gameObject.SetActive(true);
     }
+    public void GameWin()
+    {
+        // Ẩn UI không cần thiết
+        if (PauseMenu != null)
+            PauseMenu.SetActive(false);
+
+        if (scoreText != null)
+            scoreText.gameObject.SetActive(false);
+
+        GameObject fuelBar = GameObject.Find("FuelBar");
+        if (fuelBar != null)
+            fuelBar.SetActive(false);
+
+        // Hiển thị UI Game Over
+        WinGameUI();
+        Time.timeScale = 0f;
+    }
+
+    private void WinGameUI()
+    {
+        if (gameWinText != null)
+            gameWinText.gameObject.SetActive(true);
+
+        if (winScoreText != null)
+        {
+            winScoreText.text = "Final Score: " + Enemy.totalScore.ToString();
+            winScoreText.gameObject.SetActive(true);
+        }
+
+        if (HomeButton != null)
+            HomeButton.gameObject.SetActive(true);
+    }
 
     private void HideGameOverUI()
     {
@@ -145,12 +187,25 @@ public class GameManager : MonoBehaviour
             playAgainButton.gameObject.SetActive(false);
     }
 
+    private void HideGameWinUI()
+    {
+        if (gameWinText != null)
+            gameWinText.gameObject.SetActive(false);
+
+        if (winScoreText != null)
+            winScoreText.gameObject.SetActive(false);
+
+        if (HomeButton != null)
+            HomeButton.gameObject.SetActive(false);
+    }
+
     public void RestartGame()
     {
         Enemy.totalScore = 0; // Reset điểm về 0
         FuelController.instance.FillFuel();
         Time.timeScale = 1.0f;
         HideGameOverUI();
+        HideGameWinUI();
 
         if (PauseMenu != null)
         {
@@ -165,5 +220,23 @@ public class GameManager : MonoBehaviour
         }
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public void GoHome()
+    {
+        Enemy.totalScore = 0; // Reset điểm về 0
+        FuelController.instance.FillFuel();
+        Time.timeScale = 1.0f;
+        HideGameOverUI();
+        HideGameWinUI();
+        Destroy(GameObject.Find("GameManager"));
+
+        if (PauseMenu != null)
+        {
+            PauseMenu.SetActive(false);
+        }
+
+        
+
+        SceneManager.LoadScene("MainMenu");
     }
 }
